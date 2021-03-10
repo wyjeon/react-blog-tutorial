@@ -42,7 +42,7 @@ const UserInfo = styled.div`
   margin-right: 1rem;
 `;
 
-function Header() {
+function Header({ user }) {
   return (
     <>
       <HeaderBlock>
@@ -50,9 +50,16 @@ function Header() {
           <Link to="/" className="logo">
             REACTERS
           </Link>
-          <div className="right">
-            <Button>로그인</Button>
-          </div>
+          {user ? (
+            <div className="right">
+              <UserInfo>{user.username}</UserInfo>
+              <Button>로그아웃</Button>
+            </div>
+          ) : (
+            <div className="right">
+              <Button to="/login">로그인</Button>
+            </div>
+          )}
         </Wrapper>
       </HeaderBlock>
       <Spacer />
