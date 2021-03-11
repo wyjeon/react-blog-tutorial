@@ -2,7 +2,7 @@ import { createAction, handleActions } from 'redux-actions';
 import produce from 'immer';
 import createRequestSaga, {
   createRequestActionTypes,
-} from '../lib/createRequestSage';
+} from '../lib/createRequestSaga';
 import * as authAPI from '../lib/api/auth';
 import { takeLatest } from '@redux-saga/core/effects';
 
