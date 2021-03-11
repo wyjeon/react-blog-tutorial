@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 import Responsive from '../common/Responsive';
 import SubInfo from '../common/SubInfo';
@@ -24,7 +24,7 @@ const PostContent = styled.div`
   color: ${palette.gray[8]};
 `;
 
-function PostViewer({ post, error, loading }) {
+function PostViewer({ post, error, loading, actionButtons, ownPost }) {
   // 에러 발생 시
   if (error) {
     if (error.response && error.response.status === 404) {
@@ -33,7 +33,7 @@ function PostViewer({ post, error, loading }) {
     return <PostViewerBlock>오류 발생!</PostViewerBlock>;
   }
 
-  // 로딩 중이거나 아직 포스트 데이터가 없을 때
+  // 로딩중이거나, 아직 포스트 데이터가 없을 시
   if (loading || !post) {
     return null;
   }
@@ -50,6 +50,7 @@ function PostViewer({ post, error, loading }) {
         />
         <Tags tags={tags} />
       </PostHead>
+      {actionButtons}
       <PostContent dangerouslySetInnerHTML={{ __html: body }} />
     </PostViewerBlock>
   );
